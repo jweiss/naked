@@ -1,1 +1,1 @@
-run "(cd #{release_path} && gem bundle --cached)"
+run "(cd #{release_path} && gem bundle )"
