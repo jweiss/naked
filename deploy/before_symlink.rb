@@ -8,12 +8,12 @@ begin
 
   ips_of_database_servers = config['roles']['rails-app']['instances'].map{|instance, instance_config| instance_config['private_dns_name']}
 
-  current_yml = YAML.load(File.read(DB_YML)
+  current_yml = YAML.load(File.read(DB_YML_PATH))
 
   #current_yml.update("production_master" => current_yml["production"].dup.update('host' => ips_of_database_servers.first))
   #current_yml.update("production_salve" => current_yml["production"].dup.update('host' => ips_of_database_servers.last))
 
-  File.open(DB_YML, "w") do |db|
+  File.open(DB_YML_PATH, "w") do |db|
     db.print current_yml.to_yml
   end
 rescue Exception => e
