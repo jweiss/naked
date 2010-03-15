@@ -1,6 +1,6 @@
 begin
 
-  DB_YML_PATH = release_path + "/config/database.yml")
+  DB_YML_PATH = release_path + "/config/database.yml"
   SCALARIUM_STATE_PATH = "/var/lib/scalarium/cluster_state.json"
 
   json = File.read(SCALARIUM_STATE_PATH)
