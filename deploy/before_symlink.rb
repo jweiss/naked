@@ -7,7 +7,7 @@ begin
 
   ips_of_database_servers = config['roles']['rails-app']['instances'].map{|instance, instance_config| instance_config['private_dns_name']}
 
-  current_yml = ::YAML.load(File.read(DB_YML_PATH))
+  current_yml = ::YAML.load(::File.read(DB_YML_PATH))
 
   Chef::Log.info("Updating database.yml")
   current_yml.update("production_master" => current_yml["production"].dup.update('host' => ips_of_database_servers.first))
