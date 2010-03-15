@@ -10,8 +10,8 @@ begin
 
   current_yml = YAML.load(File.read(DB_YML_PATH))
 
-  #current_yml.update("production_master" => current_yml["production"].dup.update('host' => ips_of_database_servers.first))
-  #current_yml.update("production_salve" => current_yml["production"].dup.update('host' => ips_of_database_servers.last))
+  current_yml.update("production_master" => current_yml["production"].dup.update('host' => ips_of_database_servers.first))
+  current_yml.update("production_salve" => current_yml["production"].dup.update('host' => ips_of_database_servers.last))
 
   File.open(DB_YML_PATH, "w") do |db|
     db.print current_yml.to_yml
