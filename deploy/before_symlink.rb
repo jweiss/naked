@@ -10,6 +10,7 @@ begin
 
   current_yml = YAML.load(File.read(DB_YML_PATH))
 
+  Chef::Log.info("Updating database.yml")
   current_yml.update("production_master" => current_yml["production"].dup.update('host' => ips_of_database_servers.first))
   current_yml.update("production_salve" => current_yml["production"].dup.update('host' => ips_of_database_servers.last))
 
@@ -19,4 +20,5 @@ begin
 rescue Exception => e
   # we don't want to stop deployment, if you do, don't catch the exception
   puts "Error during creating of data_fabric database.yml"
+  Chef::Log.error("Error during database.yml update! #{e} #{e.backtrace.join("\n")}")
 end
