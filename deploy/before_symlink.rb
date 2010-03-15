@@ -14,7 +14,7 @@ begin
   current_yml.update("production_salve" => current_yml["production"].dup.update('host' => ips_of_database_servers.last))
 
   ::File.open(DB_YML_PATH, "w") do |db|
-    db.print current_yml.to_yml
+    db.print YAML.dump(current_yml)
   end
 rescue Exception => e
   # we don't want to stop deployment, if you do, don't catch the exception
